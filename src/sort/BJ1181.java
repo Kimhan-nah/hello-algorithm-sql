@@ -2,22 +2,35 @@ package sort;
 
 import java.util.*;
 
-//public class BJ1181 {
-public class Main {
-  private static void swap(String[] arr, int a, int b) {
-    String tmp = arr[a];
-    arr[a] = arr[b];
-    arr[b] = tmp;
+public class BJ1181 {
+  private static void merge(String[] arr, int left, int mid, int right) {
+    String[] tmp = new String[arr.length];
+    int i = left;
+    int j = mid + 1;
+    int idx = 0;
+
+    while (i <= mid && j <= right) {
+      if (arr[i].length() < arr[j].length())
+        tmp[idx++] = arr[i++];
+      else if (arr[i].length() == arr[j].length())
+        tmp[idx++] = arr[i].compareTo(arr[j]) < 0 ? arr[i++] : arr[j++];
+      else
+        tmp[idx++] = arr[j++];
+    }
+    for (; i <= mid; ++i)
+      tmp[idx++] = arr[i];
+    for (; j <= right; ++j)
+      tmp[idx++] = arr[j];
+    idx = 0;
+    for(int k = left; k <= right; ++k)
+      arr[k] = tmp[idx++];
   }
-  private static void sort(String[] arr, int left, int right) {    // bubble sort
-    for(int i = 0; i < arr.length; ++i) {
-      for(int j = 0; j < arr.length - i - 1; ++j) {
-        if (arr[j].length() > arr[j + 1].length()) {
-          swap(arr, j, j + 1);
-        } else if (arr[j].length() == arr[j + 1].length() && arr[j].compareTo(arr[j + 1]) > 0) {
-          swap(arr, j, j + 1);
-        }
-      }
+  private static void sort(String[] arr, int left, int right) {
+    if (left < right) {
+      int mid = (left + right) / 2;
+      sort(arr, left, mid);
+      sort(arr, mid + 1, right);
+      merge(arr, left, mid, right);
     }
   }
   public static void main(String[] args) {
