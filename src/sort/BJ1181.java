@@ -1,8 +1,10 @@
 package sort;
 
+import java.io.*;
 import java.util.*;
 
 public class BJ1181 {
+
   private static void merge(String[] arr, int left, int mid, int right) {
     String[] tmp = new String[right - left + 1];
     int i = left;
@@ -22,9 +24,10 @@ public class BJ1181 {
     for (; j <= right; ++j)
       tmp[idx++] = arr[j];
     idx = 0;
-    for(int k = left; k <= right; ++k)
+    for (int k = left; k <= right; ++k)
       arr[k] = tmp[idx++];
   }
+
   private static void sort(String[] arr, int left, int right) {
     if (left < right) {
       int mid = (left + right) / 2;
@@ -33,17 +36,20 @@ public class BJ1181 {
       merge(arr, left, mid, right);
     }
   }
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-    int n = scanner.nextInt();
+
+  public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
     Set<String> set = new HashSet<>();
+
     for (int i = 0; i < n; ++i) {
-      set.add(scanner.next());
+      set.add(br.readLine());
     }
     String[] arr = set.toArray(new String[0]);
+
     sort(arr, 0, arr.length - 1);
 
-    for (String str: arr) {
+    for (String str : arr) {
       System.out.println(str);
     }
   }
