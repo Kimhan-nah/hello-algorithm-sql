@@ -4,7 +4,7 @@ import java.util.*;
 
 public class BJ1181 {
   private static void merge(String[] arr, int left, int mid, int right) {
-    String[] tmp = new String[arr.length];
+    String[] tmp = new String[right - left + 1];
     int i = left;
     int j = mid + 1;
     int idx = 0;
