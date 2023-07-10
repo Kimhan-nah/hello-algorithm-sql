@@ -10,27 +10,24 @@ public class QuickSort {
   }
 
   private static int partition(int[] arr, int left, int right) {
-    int pivot = arr[left];  // first element pivot
-    int index = left++;
+    int mid = left + (right - left) / 2;
+    int pivot = arr[mid];
 
     while (left < right) {
-      while (left < right && arr[right] >= pivot)
-        --right;
-      while (left < right && arr[left] < pivot)
+      while (arr[left] < pivot)
         ++left;
+      while (arr[right] > pivot)
+        --right;
+
       swap(arr, left, right);
     }
 
-    // left >= right
-    if (index < right && pivot > arr[right]) {
-      swap(arr, index, right);
-      index = right;
-    }
-    return index;
+    return right;
   }
   public static void sort(int[] arr, int left, int right) {
     if (left < right) {
       int index = partition(arr, left, right);
+      System.out.println("index : " + index);
       System.out.println(Arrays.toString(arr));
       sort(arr, left, index - 1);
       sort(arr, index + 1, right);
@@ -38,7 +35,8 @@ public class QuickSort {
   }
 
   public static void main(String[] args) {
-    int[] arr = new int[]{5, 4, 3, 2, 1, 3, 4, 5, 6, 7, 8, 1, 10, 11, 12, 10, 0, 1, -1, 20, 23, -2, 0, -2};
+    int[] arr = new int[]{5,1,3,2,4,6, -1, -2, 0, 9, 10};
+//    int[] arr = new int[]{5, 4, 3, 2, 1, 3, 4, 5, 6, 7, 8, 1, 10, 11, 12, 10, 0, 1, -1, 20, 23, -2, 0, -2};
 
     System.out.println("=== Before ===");
     System.out.println(Arrays.toString(arr));
