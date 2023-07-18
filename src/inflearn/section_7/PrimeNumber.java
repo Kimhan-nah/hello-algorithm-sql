@@ -8,10 +8,11 @@ public class PrimeNumber {
     int[] ch = new int[n + 1];
 
     for (int i = 2; i <= n; ++i) {
-      if (ch[i] == 0)
+      if (ch[i] == 0) {
         ++answer;
-      for (int j = 2; i * j < ch.length; ++j)
-        ch[i * j] = 1;
+        for (int j = i; j <= n; j += i)
+          ch[j] = 1;
+      }
     }
     return answer;
   }
