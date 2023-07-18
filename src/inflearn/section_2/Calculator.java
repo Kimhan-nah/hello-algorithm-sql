@@ -1,4 +1,4 @@
-package inflearn.section_7;
+package inflearn.section_2;
 
 import java.util.Scanner;
 

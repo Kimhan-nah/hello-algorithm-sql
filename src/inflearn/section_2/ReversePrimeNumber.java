@@ -1,8 +1,8 @@
-package inflearn.section_7;
+package inflearn.section_2;
 
 import java.util.Scanner;
 
-public class RecursivePrimeNumber {
+public class ReversePrimeNumber {
   private static boolean isPrime(int n) {
     int[] ch = new int[n + 1];
 
