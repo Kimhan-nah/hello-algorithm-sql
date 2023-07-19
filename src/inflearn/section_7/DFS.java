@@ -9,7 +9,7 @@ class Node {
   }
 }
 
-public class BinarySearchTree {
+public class DFS {
   Node root;
 
   public void DFS(Node root) {
@@ -21,7 +21,7 @@ public class BinarySearchTree {
   }
 
   public static void main(String[] args) {
-    BinarySearchTree tree = new BinarySearchTree();
+    DFS tree = new DFS();
     tree.root = new Node(1);
     tree.root.left = new Node(2);
     tree.root.right= new Node(3);
