@@ -1,7 +1,6 @@
-package sort;
+package baekjoon.sort;
 
 import java.io.*;
-import java.util.*;
 
 public class BJ2751 {
   private static void merge(int[] arr, int left, int mid, int right) {
