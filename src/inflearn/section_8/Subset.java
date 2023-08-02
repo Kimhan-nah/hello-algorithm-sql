@@ -3,30 +3,22 @@ package inflearn.section_8;
 import java.util.Scanner;
 
 public class Subset {
-  static int[] check;
-  static int breakPoint = 0;
+  static int total = 0;
+  static boolean breakPoint = false;
 
-  private static void DFS(int[] arr, int idx) {
-    if (breakPoint == 1) return ;
+  private static void DFS(int[] arr, int idx, int sum) {
+    if (breakPoint || sum > total / 2) return ;
     if (idx == arr.length) {
-      int a = 0, b= 0;
-      for (int i = 0; i < arr.length; ++i) {
-        if (check[i] == 1) a += arr[i];
-        else b += arr[i];
-      }
-      if (a == b) breakPoint = 1;
+      if (total - sum == sum) breakPoint = true;
       return ;
     }
-    check[idx] = 1;
-    DFS(arr, idx + 1);
-    check[idx] = 0;
-    DFS(arr, idx + 1);
+    DFS(arr, idx + 1, sum + arr[idx]);
+    DFS(arr, idx + 1, sum);
   }
 
   private static void solution(int[] arr) {
-    check = new int[arr.length];
-    DFS(arr, 0);
-    if (breakPoint == 1) {
+    DFS(arr, 0, 0);
+    if (breakPoint) {
       System.out.println("YES");
     } else {
       System.out.println("NO");
@@ -37,8 +29,10 @@ public class Subset {
     Scanner scanner = new Scanner(System.in);
     int n = scanner.nextInt();
     int[] arr = new int[n];
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i < n; ++i) {
       arr[i] = scanner.nextInt();
+      total += arr[i];
+    }
     solution(arr);
 //    int[] arr = {1,3,5,6,7,10};
 //    solution(arr);
