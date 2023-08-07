@@ -10,15 +10,20 @@ public class Safecracker {
   public static void main(String args[]) throws IOException
   {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    StringBuilder builder = new StringBuilder();
+    StringTokenizer st = new StringTokenizer(reader.readLine());
 
-    int w = Integer.parseInt(reader.readLine());
-    int n = Integer.parseInt(reader.readLine());
+    StringBuilder builder = new StringBuilder();
+//    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+
+    int w = Integer.parseInt(st.nextToken());
+    int n = Integer.parseInt(st.nextToken());
 
     int[][] arr = new int[n][2];
     for (int i = 0; i < n; ++i) {
-      arr[i][0] = Integer.parseInt(reader.readLine());
-      arr[i][1] = Integer.parseInt(reader.readLine());
+//      StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
+      st = new StringTokenizer(reader.readLine());
+      arr[i][0] = Integer.parseInt(st.nextToken());
+      arr[i][1] = Integer.parseInt(st.nextToken());
     }
 
     Arrays.sort(arr, new Comparator<int[]>() {
@@ -40,5 +45,7 @@ public class Safecracker {
       }
     }
     builder.append(answer);
+    System.out.println(builder.toString());
+//    writer.append()
   }
 }
