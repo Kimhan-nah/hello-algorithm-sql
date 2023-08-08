@@ -24,7 +24,6 @@ public class RedundantPermutation1 {
     n = Integer.parseInt(st.nextToken());
     m = Integer.parseInt(st.nextToken());
     arr = new int[m + 1];
-
     solution(1);
   }
 }
