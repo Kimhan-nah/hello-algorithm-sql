@@ -1,17 +1,17 @@
 package inflearn.section_1;
 
 import java.util.*;
+import java.lang.StringBuilder;
 
 public class ReversedWord {
-  private static void solution(String[] words) {
-    StringBuilder sb = new StringBuilder();
+  private static ArrayList<String> solution(String[] words) {
+    ArrayList<String> answer = new ArrayList<>();
+
     for (String word : words) {
-      for (int i = word.length() - 1; i >= 0; --i) {
-        sb.append(word.charAt(i));
-      }
-      sb.append("\n");
+      String tmp = new StringBuilder(word).reverse().toString();
+      answer.add(tmp);
     }
-    System.out.println(sb);
+    return  answer;
   }
 
   public static void main(String[] args) {
@@ -21,6 +21,8 @@ public class ReversedWord {
     for (int i = 0; i < n; ++i) {
       words[i] = sc.next();
     }
-    solution(words);
+    for (String word : solution(words)) {
+      System.out.println(word);
+    }
   }
 }
