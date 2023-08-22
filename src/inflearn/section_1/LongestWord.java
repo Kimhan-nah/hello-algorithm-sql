@@ -6,7 +6,7 @@ public class LongestWord {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
     String str = sc.nextLine();
-    String[] tokens = str.split("\\s");
+    String[] tokens = str.split(" ");
     String answer = "";
     for (String token : tokens) {
       if (answer.length() < token.length()) answer = token;
