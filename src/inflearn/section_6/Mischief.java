@@ -4,6 +4,15 @@ import java.util.*;
 import java.io.*;
 
 public class Mischief {
+  /**
+   * ArrayList<Integer> answer = new ArrayList<>();
+   * int[] tmp = arr.clone();
+   * Arrays.sort(tmp);
+   * for (int i = 0; i < n; ++i) {
+   *   if (arr[i] != tmp[i]) answer.add(i + 1);
+   * }
+   * return answer;
+   */
   private static void solution(int[] arr) {
     int index1 = 0, index2 = arr.length - 1;
 
