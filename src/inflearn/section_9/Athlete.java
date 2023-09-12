@@ -3,34 +3,50 @@ package inflearn.section_9;
 import java.util.*;
 import java.io.*;
 
+class Body implements Comparable<Body> {
+  public int h, w;
+
+  public Body(int h, int w) {
+    this.h = h;
+    this.w = w;
+  }
+
+  @Override
+  public int compareTo(Body o) {
+    return o.h - this.h;
+  }
+}
+
 public class Athlete {
   /**
    *  지원자 A가 키와 몸무게가 모두 큰 지원자가 존재하면 탈락
    */
-  private static void solution(int[][] arr) {
+  private static int solution(ArrayList<Body> arr) {
     int count = 0;
+    Collections.sort(arr);
+    int max = Integer.MIN_VALUE;
 
-    for (int i = 0; i < arr.length; ++i) {
-      for (int j = 0; j < arr.length; ++j) {
-        if (arr[i][0] < arr[j][0] && arr[i][1] < arr[j][1]) {
-          ++count;
-          break ;
-        }
+    for (Body ob : arr) {
+      if (ob.w > max) {
+        max = ob.w;
+        ++count;
       }
     }
-    System.out.println(arr.length - count);
-  }
+    return count;
+}
 
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int n = Integer.parseInt(br.readLine());
-    int[][] arr = new int[n][2];
+    ArrayList<Body> arr = new ArrayList<>();
     for (int i = 0; i < n; ++i) {
       StringTokenizer st = new StringTokenizer(br.readLine());
-      arr[i][0] = Integer.parseInt(st.nextToken());
-      arr[i][1] = Integer.parseInt(st.nextToken());
+      int h = Integer.parseInt(st.nextToken());
+      int w = Integer.parseInt(st.nextToken());
+      arr.add(new Body(h, w));
     }
-    solution(arr);
+    int answer = solution(arr);
+    System.out.println(answer);
 
   }
 }
