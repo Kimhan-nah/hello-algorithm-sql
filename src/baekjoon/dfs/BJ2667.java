@@ -7,18 +7,12 @@ public class BJ2667 {
   static int[][] check;
   static char[][] arr;
   static int n;
-  private static int DFS(int row, int col, int count) {
-    if (row < 0 || col < 0 || row == n || col == n || check[row][col] == 1 || arr[row][col] != '1') return count;
+  private static int DFS(int row, int col) {
+    if (row < 0 || col < 0 || row == n || col == n || check[row][col] == 1 || arr[row][col] != '1') return 0;
 
     check[row][col] = 1;    //지나감
-    ++count;
 
-    count = DFS(row, col + 1, count);
-    count = DFS(row + 1, col, count);
-    count = DFS(row - 1, col, count);
-    count = DFS(row, col - 1, count);
-
-    return count;
+    return 1 + DFS(row, col + 1) + DFS(row + 1, col) + DFS(row - 1, col) + DFS(row, col - 1);
   }
 
   private static void solution() {
@@ -29,7 +23,7 @@ public class BJ2667 {
       for (int j = 0; j < n; ++j) {
         if (check[i][j] != 1 && arr[i][j] == '1') {
           ++total;
-          int count = DFS(i, j, 0);
+          int count = DFS(i, j);
           answer.add(count);
         }
       }
