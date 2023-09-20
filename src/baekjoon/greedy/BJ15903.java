@@ -4,14 +4,18 @@ import java.util.*;
 import java.io.*;
 
 public class BJ15903 {
-  private static long solution(long[] cards, int m) {
+  private static long solution(PriorityQueue<Long> cards, int m) {
+    long answer = 0;
+
     for (int i = 0; i < m; ++i) {
-      Arrays.sort(cards);
-      long tmp = cards[0] + cards[1];
-      cards[0] = tmp;
-      cards[1] = tmp;
+      long tmp = cards.poll() + cards.poll();
+      cards.offer(tmp);
+      cards.offer(tmp);
     }
-    return  Arrays.stream(cards).sum();
+    while (!cards.isEmpty()) {
+      answer += cards.poll();
+    }
+    return answer;
   }
 
   public static void main(String[] args) throws IOException {
@@ -19,11 +23,11 @@ public class BJ15903 {
     StringTokenizer st = new StringTokenizer(br.readLine());
     int n = Integer.parseInt(st.nextToken());
     int m = Integer.parseInt(st.nextToken());
-    long[] cards = new long[n];
+    PriorityQueue<Long> cards = new PriorityQueue<>(n);
 
     st = new StringTokenizer(br.readLine());
     for (int i = 0; i < n; ++i) {
-      cards[i] = Integer.parseInt(st.nextToken());
+      cards.offer(Long.parseLong(st.nextToken()));
     }
     long answer = solution(cards, m);
     System.out.println(answer);
