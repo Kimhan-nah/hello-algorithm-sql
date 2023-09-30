@@ -6,7 +6,7 @@ import java.util.*;
 public class BJ18352 {
   static StringBuilder sb = new StringBuilder();
   static ArrayList<Integer>[] graph;
-  static int[] dis;
+  static int n, m, x, k;
 
   static class Edge {
     int vertex, dis;
@@ -16,17 +16,22 @@ public class BJ18352 {
       this.dis = dis;
     }
   }
-  private static void solution(int x, int k) {
+  private static void solution() {
     Queue<Edge> pq = new PriorityQueue<>((a, b) -> a.dis - b.dis);
+    int[] dis = new int[n + 1];
+    boolean[] visited = new boolean[n + 1];
 
+    Arrays.fill(dis, Integer.MAX_VALUE);
     pq.offer(new Edge(x, 0));
     dis[x] = 0;
+    visited[x] = true;
 
     while (!pq.isEmpty()) {
       Edge current = pq.poll();
       for (int next : graph[current.vertex]) {
-        if (current.dis + 1 > dis[next]) continue;
+        if (visited[next] || current.dis + 1 > dis[next]) continue;
         dis[next] = current.dis + 1;
+        visited[next] = true;
         pq.offer(new Edge(next, current.dis + 1));
       }
     }
@@ -45,26 +50,24 @@ public class BJ18352 {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
-    int n = Integer.parseInt(st.nextToken());
-    int m = Integer.parseInt(st.nextToken());
-    int k = Integer.parseInt(st.nextToken());
-    int x = Integer.parseInt(st.nextToken());
+    n = Integer.parseInt(st.nextToken());
+    m = Integer.parseInt(st.nextToken());
+    k = Integer.parseInt(st.nextToken());
+    x = Integer.parseInt(st.nextToken());
     graph = new ArrayList[n + 1];
-    dis = new int[n + 1];
 
     // init graph
     for (int i = 0; i <= n; ++i) {
       graph[i] = new ArrayList<>();
     }
 
-    Arrays.fill(dis, Integer.MAX_VALUE);
     for (int i = 0; i < m; ++i) {
       st = new StringTokenizer(br.readLine());
       int v1 = Integer.parseInt(st.nextToken());
       int v2 = Integer.parseInt(st.nextToken());
       graph[v1].add(v2);
     }
-    solution(x, k);
+    solution();
     System.out.println(sb);
   }
 }
