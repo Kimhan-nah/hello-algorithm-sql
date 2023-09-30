@@ -7,8 +7,7 @@ import java.io.*;
 public class BJ2468 {
   static int[][] arr;
   static int n, min, max;
-  static int[] dx = {0, 1, 0, -1};
-  static int[] dy = {1, 0, -1, 0};
+  static int[][] dt = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
   static class Point {
     int row, col;
@@ -29,12 +28,12 @@ public class BJ2468 {
       int len = queue.size();
       for (int i = 0; i < len; ++i) {
         Point current = queue.poll();
-        int currentRow = current.row;
-        int currentCol = current.col;
         for (int j = 0; j < 4; ++j) {
-          int nextRow = currentRow + dy[j];
-          int nextCol = currentCol + dx[j];
-          if (nextRow < 0 || nextRow >= n || nextCol < 0 || nextCol >= n || arr[nextRow][nextCol] == 0 || visited[nextRow][nextCol]) continue;
+          int nextRow = current.row + dt[j][0];
+          int nextCol = current.col + dt[j][1];
+          if (nextRow < 0 || nextRow >= n || nextCol < 0 || nextCol >= n ||
+              arr[nextRow][nextCol] == 0 || visited[nextRow][nextCol])
+            continue;
           queue.offer(new Point(nextRow, nextCol));
           visited[nextRow][nextCol] = true;
         }
