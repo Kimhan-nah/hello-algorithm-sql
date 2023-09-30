@@ -8,21 +8,16 @@ public class BJ18352 {
   static ArrayList<Integer>[] graph;
   static int[] dis;
 
-  static class Edge implements Comparable<Edge> {
+  static class Edge {
     int vertex, dis;
 
     public Edge(int vertex, int dis) {
       this.vertex = vertex;
       this.dis = dis;
     }
-
-    @Override
-    public int compareTo(Edge o) {
-      return dis - o.dis;
-    }
   }
   private static void solution(int x, int k) {
-    Queue<Edge> pq = new PriorityQueue<>();
+    Queue<Edge> pq = new PriorityQueue<>((a, b) -> a.dis - b.dis);
 
     pq.offer(new Edge(x, 0));
     dis[x] = 0;
