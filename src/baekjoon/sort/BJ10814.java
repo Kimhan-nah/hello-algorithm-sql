@@ -31,8 +31,10 @@ public class BJ10814 {
       arr[i] = new Member(name, age);
     }
     Arrays.sort(arr);
+    StringBuilder sb = new StringBuilder();
     for (Member x : arr) {
-      System.out.println(x.age + " " + x.name);
+      sb.append(x.age + " " + x.name + "\n");
     }
+    System.out.println(sb);
   }
 }
