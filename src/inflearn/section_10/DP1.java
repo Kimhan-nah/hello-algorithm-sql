@@ -1,9 +1,8 @@
 package inflearn.section_10;
 
-import java.util.*;
 import java.io.*;
 
-public class Main {
+public class DP1 {
     private static int[] dp = new int[36];
     private static int solution(int n) {
         dp[1] = 1;
