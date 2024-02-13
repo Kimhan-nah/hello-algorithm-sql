@@ -4,24 +4,19 @@ import java.io.*;
 import java.util.*;
 
 public class BJ11660 {
-	private static int N, M;
-	private static int[][] arr;
-	private static int[][] dp;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
-		arr = new int[N + 1][N + 1];
-		dp = new int[N + 1][N + 1];
+		int N = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
+		int[][] dp = new int[N + 1][N + 1];
 		StringBuilder sb = new StringBuilder();
 
 		for (int i = 1; i <= N; ++i) {
 			st = new StringTokenizer(br.readLine());
 			for (int j = 1; j <= N; ++j) {
-				arr[i][j] = Integer.parseInt(st.nextToken());
-				dp[i][j] = dp[i - 1][j] + dp[i][j - 1] - dp[i - 1][j - 1] + arr[i][j];
+				dp[i][j] = dp[i - 1][j] + dp[i][j - 1] - dp[i - 1][j - 1] + Integer.parseInt(st.nextToken());
 			}
 		}
 		for (int i = 0; i < M; ++i) {
