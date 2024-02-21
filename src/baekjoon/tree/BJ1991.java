@@ -1,44 +1,45 @@
-package baekjoon.data_structure;
+package baekjoon.tree;
 
 import java.io.*;
 import java.util.*;
 
-class Node {
-	char ch;
-	Node left, right;
 
-	public Node(char ch) {
-		this.ch = ch;
-		left = right = null;
-	}
-}
-
-class Tree {
-	Node root;
-
-	public void preorder(Node root) {
-		if (root == null) return;
-		System.out.print(root.ch);
-		preorder(root.left);
-		preorder(root.right);
-	}
-
-	public void inorder(Node root) {
-		if (root == null) return;
-		inorder(root.left);
-		System.out.print(root.ch);
-		inorder(root.right);
-	}
-
-	public void postorder(Node root) {
-		if (root == null) return;
-		postorder(root.left);
-		postorder(root.right);
-		System.out.print(root.ch);
-	}
-}
 
 public class BJ1991 {
+	static class Node {
+		char ch;
+		Node left, right;
+
+		public Node(char ch) {
+			this.ch = ch;
+			left = right = null;
+		}
+	}
+
+	static class Tree {
+		Node root;
+
+		public void preorder(Node root) {
+			if (root == null) return;
+			System.out.print(root.ch);
+			preorder(root.left);
+			preorder(root.right);
+		}
+
+		public void inorder(Node root) {
+			if (root == null) return;
+			inorder(root.left);
+			System.out.print(root.ch);
+			inorder(root.right);
+		}
+
+		public void postorder(Node root) {
+			if (root == null) return;
+			postorder(root.left);
+			postorder(root.right);
+			System.out.print(root.ch);
+		}
+	}
 	private static int n;
 
 	public static void main(String[] args) throws IOException {
