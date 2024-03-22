@@ -54,8 +54,7 @@ public class BJ16236 {
 		int distance = 0;
 		queue.offer(new Point(row, col));
 
-		int minRow = Integer.MAX_VALUE;
-		int minCol = Integer.MAX_VALUE;
+		Queue<Point> pq = new PriorityQueue<>();
 
 		while (!queue.isEmpty()) {
 			int count = queue.size();
@@ -75,18 +74,16 @@ public class BJ16236 {
 						continue;
 					}
 					// found!
-					if (nr < minRow || (nr == minRow && nc < minCol)) {
-						minRow = nr;
-						minCol = nc;
-					}
+					pq.offer(new Point(nr, nc));
 				}
 			}
-			if (minRow != Integer.MAX_VALUE) {
+			if (!pq.isEmpty()) {
 				//found!
+				Point point = pq.poll();
 				map[row][col] = 0;
-				map[minRow][minCol] = 9;
+				map[point.row][point.col] = 9;
 				move += distance;
-				return new Point(minRow, minCol);
+				return point;
 			}
 		}
 		return null;
