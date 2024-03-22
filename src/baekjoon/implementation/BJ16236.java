@@ -41,7 +41,7 @@ public class BJ16236 {
 		while (point != null) {
 			point = bfs(point.row, point.col, size);
 			++eat;
-			if (eat == size) {
+			if (size < 8 && eat == size) {
 				eat = 0;
 				++size;
 			}
@@ -54,10 +54,13 @@ public class BJ16236 {
 		int distance = 0;
 		queue.offer(new Point(row, col));
 
+		int minRow = Integer.MAX_VALUE;
+		int minCol = Integer.MAX_VALUE;
+
 		while (!queue.isEmpty()) {
 			int count = queue.size();
 			++distance;
-			List<Point> list = new ArrayList<>();
+
 			for (int i = 0; i < count; ++i) {
 				Point poll = queue.poll();
 
@@ -71,16 +74,19 @@ public class BJ16236 {
 						queue.offer(new Point(nr, nc));
 						continue;
 					}
-					list.add(new Point(nr, nc));
+					// found!
+					if (nr < minRow || (nr == minRow && nc < minCol)) {
+						minRow = nr;
+						minCol = nc;
+					}
 				}
 			}
-			if (!list.isEmpty()) {
-				Collections.sort(list);
-				Point point = list.get(0);
+			if (minRow != Integer.MAX_VALUE) {
+				//found!
 				map[row][col] = 0;
-				map[point.row][point.col] = 9;
+				map[minRow][minCol] = 9;
 				move += distance;
-				return point;
+				return new Point(minRow, minCol);
 			}
 		}
 		return null;
