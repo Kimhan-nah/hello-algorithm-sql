@@ -10,7 +10,7 @@ public class BJ15686 {
 	private static boolean[] isSelected;
 	private static int answer = Integer.MAX_VALUE;
 
-	private static void combi(int level) {
+	private static void combi(int level, int index) {
 		if (level == m) {
 			// 도시 치킨 거리 구하기 (모든 집에서의 치킨 거리 합 구하기)
 			int sum = 0;
@@ -30,10 +30,10 @@ public class BJ15686 {
 			return;
 		}
 
-		for (int i = 0; i < chickens.size(); ++i) {
+		for (int i = index; i < chickens.size(); ++i) {
 			if (isSelected[i]) continue;
 			isSelected[i] = true;
-			combi(level + 1);
+			combi(level + 1, i + 1);
 			isSelected[i] = false;
 		}
 	}
@@ -57,7 +57,7 @@ public class BJ15686 {
 		}
 		isSelected = new boolean[chickens.size()];
 
-		combi(0);
+		combi(0, 0);
 		System.out.println(answer);
 	}
 
