@@ -9,39 +9,33 @@ import java.util.StringTokenizer;
 public class Main {
 	private static int N;
 	private static List<Edge>[] graph;
-	private static int[] distances;
 	private static boolean[] isVisited;
+	private static int answer = Integer.MIN_VALUE;
 	private static StringBuilder sb = new StringBuilder();
 
-	private static void dfs(int from) {
+	private static void dfs(int from, int len) {
 		for (Edge edge : graph[from]) {
 			if (isVisited[edge.vertex]) {
 				continue;
 			}
 			isVisited[edge.vertex] = true;
-			distances[edge.vertex] += (distances[from] + edge.cost);
-			dfs(edge.vertex);
+			dfs(edge.vertex, len + edge.cost);
 		}
+		answer = Math.max(answer, len);
 	}
 
-	private static int solution() {
-		int answer = Integer.MIN_VALUE;
-
+	private static void solution() {
 		for (int i = 1; i <= N; ++i) {
-			Arrays.fill(distances, 0);
 			Arrays.fill(isVisited, false);
 			isVisited[i] = true;
-			dfs(i);
-			answer = Math.max(answer, Arrays.stream(distances).max().getAsInt());
+			dfs(i, 0);
 		}
-		return answer;
 	}
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		N = Integer.parseInt(br.readLine());
 		graph = new List[N + 1];
-		distances = new int[N + 1];
 		isVisited = new boolean[N + 1];
 
 		// init
@@ -58,7 +52,7 @@ public class Main {
 			graph[to].add(new Edge(from, cost));
 		}
 
-		int answer = solution();
+		solution();
 
 		sb.append(answer);
 		System.out.println(answer);
