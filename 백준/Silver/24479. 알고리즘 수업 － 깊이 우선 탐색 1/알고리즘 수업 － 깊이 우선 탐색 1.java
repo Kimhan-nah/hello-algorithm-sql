@@ -11,14 +11,12 @@ public class Main {
 	private static List<Integer>[] graph;
 	private static int[] answer;
 	private static int sequence = 0;
-	private static boolean[] isVisited;
 	private static StringBuilder sb = new StringBuilder();
 
 	private static void dfs(int vertex) {
-		isVisited[vertex] = true;
 		answer[vertex] = ++sequence;
 		for (int adjacent : graph[vertex]) {
-			if (!isVisited[adjacent]) {
+			if (answer[adjacent] == 0) {
 				dfs(adjacent);
 			}
 		}
@@ -32,7 +30,6 @@ public class Main {
 		R = Integer.parseInt(st.nextToken());
 		graph = new List[N + 1];
 		answer = new int[N + 1];
-		isVisited = new boolean[N + 1];
 
 		// init
 		for (int i = 0; i <= N; ++i) {
