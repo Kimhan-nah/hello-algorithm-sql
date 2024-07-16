@@ -1,5 +1,7 @@
-# hello-algorithm
-알알못 기만나가 알잘알이 되는 그날까지..!!!!!
+# hello-algorithm-sql
+> 알고리즘 문제와 SQL 문제 풀이를 기록하는 레포지토리입니다.
+
+> 알알못 기만나가 알잘알 + SQL 마스터가 되는 그날까지..!!!!!
 
 [![Solved.ac
 프로필](http://mazassumnida.wtf/api/v2/generate_badge?boj=skqkdldhf98)](https://solved.ac/skqkdldhf98)
@@ -84,12 +86,3 @@ class Main {
       }
     }
     ```
-
-## 정렬 방법
-### 방법 1. List 이용
-
-### 방법 2. TreeMap 이용
-
-### 방법 3. Stream 이용
-
-### 방법 4. LinkedHashMap 이용
