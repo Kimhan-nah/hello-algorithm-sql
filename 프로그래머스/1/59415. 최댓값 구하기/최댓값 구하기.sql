@@ -1,0 +1,1 @@
+SELECT MAX(datetime) AS 시간 FROM ANIMAL_INS;
